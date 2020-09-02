@@ -17,11 +17,17 @@ const words = [
 {en: 'wizard', ru: 'мастер', ua: 'майстер'}
 ];
 
-const currentLanguage = 'en';
+let currentLanguage = 'en';
 
 let selectedWord = words[Math.floor(Math.random() * words.length)][currentLanguage];
 
-// document.getElementsByClassName("language-one").addEventListener("click", lenguagePressed);
+document.getElementById("language-one").addEventListener("click", lenguagePressed);
+function lenguagePressed(event) {
+  let currentLanguage = event.target.value;
+  selectedWord = words[Math.floor(Math.random() * words.length)][currentLanguage];
+  displayWord();
+}
+console.log(selectedWord);
 
 let playable = true;
 
@@ -98,7 +104,7 @@ window.addEventListener('keydown', e => {
 		if (e.keyCode >= 65 && e.keyCode <= 90) {
 			const letter = e.key.toLowerCase();
 
-			if (selectedWord.includes(letter)) {
+			if (selectedWord.includes(letter)) {  
 				if (!correctLetters.includes(letter)) {
 					correctLetters.push(letter);
 
@@ -118,7 +124,6 @@ window.addEventListener('keydown', e => {
 		}
 	}
 });
-
 
 playAgainBtn.addEventListener('click', () => {
 	playable = true;
